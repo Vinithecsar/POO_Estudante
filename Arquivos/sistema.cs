@@ -33,6 +33,7 @@ class Sistema{
     }
   }
 public static void ExcluirAs(Assunto novo){
-  total_as.Remove(novo);
+  Assunto remover = Sistema.ProcurarAs(novo.Nome_a);
+  total_as.Remove(remover);
 }
 }
