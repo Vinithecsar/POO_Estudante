@@ -12,6 +12,7 @@ class Assunto{
     qtd_revisoes = qtd;
   }
   
+  //propriedades
   public string Nome_d{get=>nome_disciplina;}
   public string Nome_a{get=>nome_assunto;}
   public int Qtd{
@@ -20,6 +21,6 @@ class Assunto{
   }
 
   public override string ToString(){
-    return $"{nome_assunto} - {qtd_revisoes}";
+    return $"{nome_assunto} - revisei {qtd_revisoes} vezes";
   }
 }
