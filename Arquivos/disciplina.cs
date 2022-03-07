@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 class Disciplina : IComparable<Disciplina> {
   string nome_estudante;//Joao
@@ -20,12 +19,12 @@ class Disciplina : IComparable<Disciplina> {
   }
   
   public override string ToString() {
-    return $"Prioridade: {prioridade} - {nome_disciplina}";
+    return $"{nome_disciplina} - Prioridade: {prioridade}";
   }
 
-  public int CompareTo(Disciplina obj) {
-    if (this.prioridade > obj.prioridade) return -1;
-    if (this.prioridade < obj.prioridade) return 1;
+  public int CompareTo(Disciplina novo) {
+    if (this.prioridade > novo.Prio) return 1;
+    if (this.prioridade < novo.Prio) return -1;
     else return 0;
   }
 }

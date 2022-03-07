@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 class Sistema{
-  private static int NumDisciplina;
+  private static int NumDisciplina = 0;
   private static int index;
   private static Disciplina[] total_dis = new Disciplina[5];
   private static List<Assunto> total_as = new List<Assunto>();
