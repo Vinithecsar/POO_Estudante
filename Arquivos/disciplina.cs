@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 class Disciplina : IComparable<Disciplina> {
-  public string nome_estudante;//Joao
-  public string nome_disciplina;//Física
-  public int prioridade;//1
+  string nome_estudante;//Joao
+  string nome_disciplina;//Física
+  int prioridade;//1
 
   public Disciplina(string n_est, string n_dis, int pri) {
     nome_estudante = n_est;
