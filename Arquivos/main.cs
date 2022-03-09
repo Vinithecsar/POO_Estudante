@@ -30,6 +30,61 @@ class Program{
       if(opcao==0){break;}
     }
   }
+  public static void DisInserir() {
+    Console.WriteLine("");
+    Console.WriteLine("------Inserir uma disciplina------");
+    Console.Write("Informe o nome do estudante: ");
+    string nome_e = Console.ReadLine();
+    
+    Console.Write("Informe o nome da disciplina: ");
+    string nome_d2 = Console.ReadLine();
+    
+    Console.Write("Informe a prioridade: ");
+    int pr = int.Parse(Console.ReadLine());
+
+    Disciplina novo = new Disciplina(nome_e, nome_d2, pr);
+    Sistema.InserirDis(novo);
+    Console.WriteLine("");
+    Console.WriteLine("Operação realizada com sucesso");
+  }
+  //funções quanto as disciplinas
+  public static void DisListar() {
+    Console.WriteLine("");
+    Console.WriteLine("------Listar disciplinas------");
+    foreach(Disciplina i in Sistema.ListarDis()) {
+      Console.WriteLine(i);
+    }
+    Console.WriteLine("");
+    Console.WriteLine("Operação realizada com sucesso");
+  }
+
+  public static void DisAtualizar() {
+    Console.WriteLine("");
+    Console.WriteLine("------Atualizar uma disciplina------");
+    Console.Write("Informe o nome da disciplina: ");
+    string nome = Console.ReadLine();
+
+    Console.Write("Informe a nova prioridade: ");
+    int prio = int.Parse(Console.ReadLine());
+
+    Disciplina novo = new Disciplina("", nome, prio);
+    Sistema.AtualizarDis(novo);
+    Console.WriteLine("");
+    Console.WriteLine("Operação realizada com sucesso");
+  }
+
+  public static void DisExcluir() {
+    Console.WriteLine("");
+    Console.WriteLine("------Excluir uma disciplina------");
+    Console.Write("Informe o nome da disciplina: ");
+    string nome = Console.ReadLine();
+
+    Disciplina novo = new Disciplina("", nome, 0);
+    Sistema.ExcluirDis(novo);
+    Console.WriteLine("");
+    Console.WriteLine("Operação realizada com sucesso");
+  }
+  //funções quanto aos assuntos
   public static void AsInserir(){
     Console.WriteLine("");
     Console.WriteLine("------Inserir um assunto------");
@@ -81,61 +136,6 @@ class Program{
 
     Assunto novo = new Assunto("", nome, 0);
     Sistema.ExcluirAs(novo);
-    Console.WriteLine("");
-    Console.WriteLine("Operação realizada com sucesso");
-  }
-
-  public static void DisInserir() {
-    Console.WriteLine("");
-    Console.WriteLine("------Inserir uma disciplina------");
-    Console.Write("Informe o nome do estudante: ");
-    string nome_e = Console.ReadLine();
-    
-    Console.Write("Informe o nome da disciplina: ");
-    string nome_d2 = Console.ReadLine();
-    
-    Console.Write("Informe a prioridade: ");
-    int pr = int.Parse(Console.ReadLine());
-
-    Disciplina novo = new Disciplina(nome_e, nome_d2, pr);
-    Sistema.InserirDis(novo);
-    Console.WriteLine("");
-    Console.WriteLine("Operação realizada com sucesso");
-  }
-
-  public static void DisListar() {
-    Console.WriteLine("");
-    Console.WriteLine("------Listar disciplinas------");
-    foreach(Disciplina i in Sistema.ListarDis()) {
-      Console.WriteLine(i);
-    }
-    Console.WriteLine("");
-    Console.WriteLine("Operação realizada com sucesso");
-  }
-
-  public static void DisAtualizar() {
-    Console.WriteLine("");
-    Console.WriteLine("------Atualizar uma disciplina------");
-    Console.Write("Informe o nome da disciplina: ");
-    string nome = Console.ReadLine();
-
-    Console.Write("Informe a nova prioridade: ");
-    int prio = int.Parse(Console.ReadLine());
-
-    Disciplina novo = new Disciplina("", nome, prio);
-    Sistema.AtualizarDis(novo);
-    Console.WriteLine("");
-    Console.WriteLine("Operação realizada com sucesso");
-  }
-
-  public static void DisExcluir() {
-    Console.WriteLine("");
-    Console.WriteLine("------Excluir uma disciplina------");
-    Console.Write("Informe o nome da disciplina: ");
-    string nome = Console.ReadLine();
-
-    Disciplina novo = new Disciplina("", nome, 0);
-    Sistema.ExcluirDis(novo);
     Console.WriteLine("");
     Console.WriteLine("Operação realizada com sucesso");
   }
