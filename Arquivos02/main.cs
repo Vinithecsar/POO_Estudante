@@ -123,7 +123,7 @@ class Program{
     string nome_completo = login.Nome_est;
     string primeiro_nome = nome_completo.Substring(0,nome_completo.IndexOf(" "));
     
-    Console.WriteLine($"----------Olá, {primeiro_nome}, aqui está seu local de estudos!----------");
+    Console.WriteLine($"----------Olá {primeiro_nome}, aqui está seu local de estudos!----------");
     Console.WriteLine("01 - Inserir nova disciplina");
     Console.WriteLine("02 - Listar as disciplinas");
     Console.WriteLine("03 - Atualizar prioridade de uma disciplina");

@@ -1,2 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfDisciplina xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+<ArrayOfDisciplina xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Disciplina>
+    <Nome_est>lucas silva</Nome_est>
+    <Cadastro>12</Cadastro>
+    <Nome_dis>ficasa</Nome_dis>
+    <Prio>1</Prio>
+  </Disciplina>
+  <Disciplina>
+    <Nome_est>lucas silva</Nome_est>
+    <Cadastro>12</Cadastro>
+    <Nome_dis>quimica</Nome_dis>
+    <Prio>2</Prio>
+  </Disciplina>
+</ArrayOfDisciplina>

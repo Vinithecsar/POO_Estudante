@@ -21,7 +21,7 @@ public class Estudante : IComparable<Estudante> {
     set{curso=value;}
   }
   public int Cadastro{
-    get{return Cadastro;}
+    get{return cadastro;}
     set{Cadastro = value;}
   }
   
