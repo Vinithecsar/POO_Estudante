@@ -1,23 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfAssunto xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Assunto>
-    <Nome_d>quimica</Nome_d>
-    <Nome_a>bioquimica</Nome_a>
+    <Nome_d>Disciplina 1</Nome_d>
+    <Nome_a>Assunto 1</Nome_a>
     <Qtd>3</Qtd>
   </Assunto>
   <Assunto>
-    <Nome_d>quimica</Nome_d>
-    <Nome_a>organic</Nome_a>
-    <Qtd>2</Qtd>
-  </Assunto>
-  <Assunto>
-    <Nome_d>ficasa</Nome_d>
-    <Nome_a>mecanic</Nome_a>
-    <Qtd>4</Qtd>
-  </Assunto>
-  <Assunto>
-    <Nome_d>ficasa</Nome_d>
-    <Nome_a>agua</Nome_a>
+    <Nome_d>Disciplina 2</Nome_d>
+    <Nome_a>Assunto 2</Nome_a>
     <Qtd>1</Qtd>
   </Assunto>
 </ArrayOfAssunto>

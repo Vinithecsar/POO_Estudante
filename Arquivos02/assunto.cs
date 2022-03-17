@@ -1,6 +1,6 @@
 using System;
 
-public class Assunto{
+public class Assunto : IComparable<Assunto>{
   string nome_disciplina;//Física
   string nome_assunto;//Termodinâmica
   int qtd_revisoes; 
@@ -28,5 +28,11 @@ public class Assunto{
 
   public override string ToString(){
     return $"{nome_assunto} - revisei {qtd_revisoes} vezes";
+  }
+
+  public int CompareTo(Assunto novo) {
+    if (this.qtd_revisoes > novo.Qtd) return 1;
+    if (this.qtd_revisoes < novo.Qtd) return -1;
+    else return 0;
   }
 }

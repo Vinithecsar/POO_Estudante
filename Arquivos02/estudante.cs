@@ -22,7 +22,7 @@ public class Estudante : IComparable<Estudante> {
   }
   public int Cadastro{
     get{return cadastro;}
-    set{Cadastro = value;}
+    set{cadastro = value;}
   }
   
   public override string ToString() {

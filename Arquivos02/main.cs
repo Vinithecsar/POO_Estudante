@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 
 class Program{
   private static Estudante login=null;
+  private static int continuar = 0;
   public static void Main(){
     
     try{
@@ -46,7 +47,7 @@ class Program{
         if(opcao==2){DisListar(identi);}
         if(opcao==3){DisAtualizar(identi);}
         if(opcao==4){DisExcluir(identi);}
-        if(opcao==5){AsInserir(identi);}
+        if(opcao==5){AsInserir(nome, identi);}
         if(opcao==6){AsListar(identi);}
         if(opcao==7){AsAtualizar(identi);}
         if(opcao==8){AsExcluir(identi);}
@@ -235,7 +236,7 @@ class Program{
     Console.WriteLine("Operação realizada com sucesso");
   }
   //funções quanto aos assuntos
-  public static void AsInserir(int id){
+  public static void AsInserir(string nome, int id){
     Console.WriteLine("");
     Console.WriteLine("------Inserir um assunto------");
     //apresentar as opções válidas
@@ -247,16 +248,34 @@ class Program{
     Console.Write("Informe o nome da disciplina: ");
     string nome_d = Console.ReadLine();
 
-    Console.Write("Informe o nome do assunto: ");
-    string nome_a = Console.ReadLine();
+    foreach(Disciplina i in Sistema.ListarDis()){
+      if(i.Nome_dis.Equals(nome_d)){
+        Console.Write("Informe o nome do assunto: ");
+        string nome_a = Console.ReadLine();
+        Console.Write("Informe a quantidade de vezes que já estudou esse assunto: ");
+        int qtd = int.Parse(Console.ReadLine());
+        Assunto novo2 = new Assunto(nome_d, nome_a, qtd);
+        Sistema.InserirAs(novo2);
+        Console.WriteLine("");
+        Console.WriteLine("Operação realizada com sucesso");
+        continuar = 1;
+      }
+    }
+    if (continuar == 0) {
+      Console.Write("Informe a prioridade: ");
+      int pr = int.Parse(Console.ReadLine());
+      Disciplina novo = new Disciplina(nome, id, nome_d, pr);
+      Sistema.InserirDis(novo);
 
-    Console.Write("Informe a quantidade de vezes que já estudou esse assunto: ");
-    int qtd = int.Parse(Console.ReadLine());
-
-    Assunto novo = new Assunto(nome_d, nome_a, qtd);
-    Sistema.InserirAs(novo);
-    Console.WriteLine("");
-    Console.WriteLine("Operação realizada com sucesso");
+      Console.Write("Informe o nome do assunto: ");
+      string nome_a1 = Console.ReadLine();
+      Console.Write("Informe a quantidade de vezes que já estudou esse assunto: ");
+      int qtd1 = int.Parse(Console.ReadLine());
+      Assunto novo3 = new Assunto(nome_d, nome_a1, qtd1);
+      Sistema.InserirAs(novo3);
+      Console.WriteLine("");
+      Console.WriteLine("Operação realizada com sucesso");
+    }
   }
   public static void AsListar(int id){
     Console.WriteLine("");

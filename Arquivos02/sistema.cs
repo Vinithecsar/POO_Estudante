@@ -51,6 +51,7 @@ public class Sistema{
         mesma_disciplina.Add(i);
       }
     }
+  mesma_disciplina.Sort();
   return mesma_disciplina;
   }
   public static void AtualizarAs(Assunto novo){
