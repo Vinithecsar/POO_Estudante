@@ -1,12 +1,36 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
-class Sistema{
+public class Sistema{
+  private static List<Estudante> total_est = new List<Estudante>();
   private static int NumDisciplina = 0;
   private static int index;
+  //pedro, física, matemática ; luisa, calculo 1, calculo 2
   private static Disciplina[] total_dis = new Disciplina[5];
-  private static List<Assunto> total_as = new List<Assunto>();
   //fisica, mecanica, 2 ; fisica, termodinamica, 1;
+  private static List<Assunto> total_as = new List<Assunto>();
+
+  //arquivo para cada lista: estudante, disciplina, assunto
+  public static void SalvarArquivo(){
+    Arquivos<Disciplina[]> a = new Arquivos<Disciplina[]>();
+    a.Salvar("./disciplinas.xml", ListarDis());
+
+    Arquivos<List<Assunto>> b = new Arquivos<List<Assunto>>();
+    b.Salvar("./assuntos.xml", total_as);
+  }
+  public static void AbrirArquivo(){
+    Arquivos<Disciplina[]> a = new Arquivos<Disciplina[]>();
+    total_dis = a.Abrir("./disciplinas.xml");
+    //list vai receber dentro de xml
+
+    Arquivos<List<Assunto>> c = new Arquivos<List<Assunto>>();
+    total_as = c.Abrir("./assuntos.xml");
+    //[] vai receber dentro de xml
+  }
+
   public static void InserirAs(Assunto novo){
     total_as.Add(novo);
   }
@@ -54,14 +78,14 @@ class Sistema{
     return aux;
   }
   
-  public static Disciplina ProcurarDis(string nome) {
+  public static Disciplina ProcurarDis(string nome, int id) {
     foreach(Disciplina dis in total_dis)
-      if (dis != null && dis.Nome_dis == nome) return dis;
+      if (dis != null && dis.Nome_dis == nome && dis.Cadastro==id) return dis;
     return null;
   }
     
   public static void AtualizarDis(Disciplina novo) {
-    Disciplina aux = ProcurarDis(novo.Nome_dis);
+    Disciplina aux = ProcurarDis(novo.Nome_dis, novo.Cadastro);
     if (aux != null)
       aux.Prio = novo.Prio;
   }
@@ -69,7 +93,7 @@ class Sistema{
   public static void ExcluirDis(Disciplina novo) {
     for (int i = 0; i < NumDisciplina; i++) {
       Disciplina aux1 = total_dis[i];
-      if (aux1.Nome_dis == novo.Nome_dis) index = i;
+      if (aux1.Nome_dis == novo.Nome_dis && aux1.Cadastro == novo.Cadastro) index = i;
     }
     
     for (int j = index; j < NumDisciplina - 1; j++) {

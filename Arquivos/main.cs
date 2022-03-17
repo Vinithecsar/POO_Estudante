@@ -6,6 +6,7 @@ class Program{
     bool la=true;
     while(la){
       Console.WriteLine("");
+      Console.WriteLine("Bem vindo(a) ao seu espaço de organização de estudos!");
       Console.WriteLine("------Escolha uma opção------");
       Console.WriteLine("01 - Inserir nova disciplina");
       Console.WriteLine("02 - Listar as disciplinas");

@@ -1,28 +1,35 @@
 using System;
 using System.Collections.Generic;
 
-class Estudante : IComparable<Estudante> {
+public class Estudante : IComparable<Estudante> {
   string nome;//pedro
   string curso;//filosofia
-  int matricula;//3456
+  int cadastro;//3456
 
-  public Estudante(string n_est, string n_cur, int mat) {
+  public Estudante(){}
+  public Estudante(string n_est, string n_cur, int cadastro) {
     nome = n_est;
     curso = n_cur;
-    matricula = mat;
+    this.cadastro = cadastro;
   }
-  public string Nome_pessoa{get=>nome;}
-  public string Nome_cur{get=>curso;}
-  public int Matr{
-    get{return matricula;}
-    set{matricula = value;}
+  public string Nome_est{
+    get{return nome;}
+    set{nome=value;}
+  }
+  public string Nome_cur{
+    get{return curso;}
+    set{curso=value;}
+  }
+  public int Cadastro{
+    get{return Cadastro;}
+    set{Cadastro = value;}
   }
   
   public override string ToString() {
-    return $"{nome} - {curso} - Matrícula: {matricula}";
+    return $"{nome} - {curso} - Cadastro: {cadastro}";
   }
 
   public int CompareTo(Estudante novo) {
-    return this.nome.CompareTo(novo.Nome_pessoa);
+    return this.nome.CompareTo(novo.Nome_est);
   }
 }
