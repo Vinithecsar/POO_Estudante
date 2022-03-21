@@ -1,15 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfDisciplina xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Disciplina>
-    <Nome_est>raquel garcia</Nome_est>
-    <Cadastro>1204</Cadastro>
-    <Nome_dis>Disciplina 2</Nome_dis>
-    <Prio>2</Prio>
-  </Disciplina>
-  <Disciplina>
-    <Nome_est>raquel garcia</Nome_est>
-    <Cadastro>1204</Cadastro>
-    <Nome_dis>Disciplina 1</Nome_dis>
-    <Prio>5</Prio>
-  </Disciplina>
-</ArrayOfDisciplina>
+<ArrayOfDisciplina xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />

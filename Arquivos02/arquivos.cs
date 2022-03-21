@@ -6,7 +6,8 @@ using System.Xml.Serialization;
 using System.Text;
 
 class Arquivos<T>{
-  public T Abrir(string nome_arquivo){//T vai receber XML
+  public T Abrir(string nome_arquivo){
+    //T vai receber XML
     XmlSerializer x = new XmlSerializer(typeof(T));
     StreamReader y = new StreamReader(nome_arquivo, Encoding.Default);
     
@@ -14,16 +15,6 @@ class Arquivos<T>{
     y.Close();
     return b;
   }
-  /*
-  public List<T> AbrirLista(string nome_arquivo){//T vai receber XML
-    XmlSerializer x = new XmlSerializer(typeof(T));
-    StreamReader y = new StreamReader(nome_arquivo);
-    
-    List<T> b = (List<T>)x.Deserialize(y);
-    y.Close();
-    return b;
-  }
-*/
   public void Salvar(string nome_arquivo, T obj){
     //XMl vai receber em formato T
     XmlSerializer x = new XmlSerializer(typeof(T));
@@ -33,14 +24,4 @@ class Arquivos<T>{
     y.Close();
     
   }
-  /*
-  public void SalvarVetor(string nome_arquivo, T[] obj){
-    //XMl vai receber em formato T
-    XmlSerializer x = new XmlSerializer(typeof(T[]));
-    StreamWriter y = new StreamWriter(nome_arquivo);
-
-    x.Serialize(y, x);
-    y.Close();
-  }
-*/
 }

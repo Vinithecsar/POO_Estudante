@@ -18,71 +18,51 @@ class Program{
     int opcao=0;
     int escolher=0;
     do{
-      if(escolher==0){//inicial
-        escolher = MenuUsuario();//(1)adm ou (2)estudante
+      try{
+        if(escolher==0){//inicial
+          escolher = MenuUsuario();//(1)adm ou (2)estudante
+        }
+        if(escolher==1){
+          opcao = MenuAdm();
+          /*
+          quando tiver as funções estudante
+          if(opcao==1){EstudanteInserir();}
+          if(opcao==2){EstudanteListar();}
+          if(opcao==3){EstudanteAtualizar();}
+          if(opcao==4){EstudanteExcluir();}
+          */
+          if(opcao==5){DisListar(0);}
+          if(opcao==6){AsListar(0);}
+          if(opcao==99){escolher=0;}
+        }
+        if(escolher==2 && login==null){//estudante sem login
+          opcao= MenuEstudanteSemLogin();
+          if(opcao==1){Logar();}
+          if(opcao==99){escolher=0;}
+        }
+        if(escolher==2 && login!=null){
+          opcao= MenuEstudanteComLogin();
+          int identi = login.Cadastro;
+          string nome = login.Nome_est;
+          if(opcao==1){DisInserir(nome, identi);}
+          if(opcao==2){DisListar(identi);}
+          if(opcao==3){DisAtualizar(identi);}
+          if(opcao==4){DisExcluir(identi);}
+          if(opcao==5){AsInserir(nome, identi);}
+          if(opcao==6){AsListar(identi);}
+          if(opcao==7){AsAtualizar(identi);}
+          if(opcao==8){AsExcluir(identi);}
+          if(opcao==99){Logout(); escolher=0;}
+        }
       }
-      if(escolher==1){
-        opcao = MenuAdm();
-        /*
-        quando tiver as funções estudante
-        if(opcao==1){EstudanteInserir();}
-        if(opcao==2){EstudanteListar();}
-        if(opcao==3){EstudanteAtualizar();}
-        if(opcao==4){EstudanteExcluir();}
-        */
-        if(opcao==5){DisListar(0);}
-        if(opcao==6){AsListar(0);}
-        if(opcao==99){escolher=0;}
+      catch (Exception erro) {
+        opcao = -1;
+        Console.WriteLine("Erro : " + erro.Message);
+        Console.WriteLine("Tente novamente");
       }
-      if(escolher==2 && login==null){//estudante sem login
-        opcao= MenuEstudanteSemLogin();
-        if(opcao==1){Logar();}
-        if(opcao==99){escolher=0;}
-      }
-      if(escolher==2 && login!=null){
-        opcao= MenuEstudanteComLogin();
-        int identi = login.Cadastro;
-        string nome = login.Nome_est;
-        if(opcao==1){DisInserir(nome, identi);}
-        if(opcao==2){DisListar(identi);}
-        if(opcao==3){DisAtualizar(identi);}
-        if(opcao==4){DisExcluir(identi);}
-        if(opcao==5){AsInserir(nome, identi);}
-        if(opcao==6){AsListar(identi);}
-        if(opcao==7){AsAtualizar(identi);}
-        if(opcao==8){AsExcluir(identi);}
-        if(opcao==99){Logout(); escolher=0;}
-      }
-      
     }while(opcao!=-1);
     Sistema.SalvarArquivo(); //listas com valores dos xml
-    /*
-    while(la){
-      Console.WriteLine("");
-      Console.WriteLine("------Escolha uma opção------");
-      Console.WriteLine("01 - Inserir nova disciplina");
-      Console.WriteLine("02 - Listar as disciplinas");
-      Console.WriteLine("03 - Atualizar prioridade de uma disciplina");
-      Console.WriteLine("04 - Excluir disciplina");
-      Console.WriteLine("05 - Inserir novo assunto");
-      Console.WriteLine("06 - Listar os assuntos de uma disciplina");
-      Console.WriteLine("07 - Atualizar assunto de uma disciplina");
-      Console.WriteLine("08 - Excluir assunto de uma disciplina");
-      Console.WriteLine("00 - Finalizar operações");
 
-      Console.Write("Opção: ");
-      int opcao = int.Parse(Console.ReadLine());
-      if(opcao==1){DisInserir();}
-      if(opcao==2){DisListar();}
-      if(opcao==3){DisAtualizar();}
-      if(opcao==4){DisExcluir();}
-      if(opcao==5){AsInserir();}
-      if(opcao==6){AsListar();}
-      if(opcao==7){AsAtualizar();}
-      if(opcao==8){AsExcluir();}
-      if(opcao==0){break;}
-    }
-    */
   }
   public static int MenuUsuario(){
     Console.WriteLine("");
@@ -237,6 +217,7 @@ class Program{
   }
   //funções quanto aos assuntos
   public static void AsInserir(string nome, int id){
+    continuar = 0;
     Console.WriteLine("");
     Console.WriteLine("------Inserir um assunto------");
     //apresentar as opções válidas

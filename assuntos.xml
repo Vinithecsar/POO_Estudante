@@ -10,4 +10,24 @@
     <Nome_a>Assunto 2</Nome_a>
     <Qtd>1</Qtd>
   </Assunto>
+  <Assunto>
+    <Nome_d>Fisica2</Nome_d>
+    <Nome_a>Mecanica1</Nome_a>
+    <Qtd>4</Qtd>
+  </Assunto>
+  <Assunto>
+    <Nome_d>Fisica2</Nome_d>
+    <Nome_a>Mecanica2</Nome_a>
+    <Qtd>2</Qtd>
+  </Assunto>
+  <Assunto>
+    <Nome_d>Fisica2</Nome_d>
+    <Nome_a>Mecanica3</Nome_a>
+    <Qtd>3</Qtd>
+  </Assunto>
+  <Assunto>
+    <Nome_d>Fisica1</Nome_d>
+    <Nome_a>Otica1</Nome_a>
+    <Qtd>2</Qtd>
+  </Assunto>
 </ArrayOfAssunto>
