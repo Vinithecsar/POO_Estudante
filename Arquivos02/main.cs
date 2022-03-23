@@ -56,7 +56,7 @@ class Program{
         }
       }
       catch (Exception erro) {
-        opcao = -1;
+        opcao = -2;
         Console.WriteLine("Erro : " + erro.Message);
         Console.WriteLine("Tente novamente");
       }
@@ -66,11 +66,13 @@ class Program{
   }
   public static int MenuUsuario(){
     Console.WriteLine("");
-    Console.WriteLine("----------Bem vindo(a) ao StudyClear----------");
+    Console.WriteLine("----------Bem vindo(a) ao EstudoClaro----------");
     Console.WriteLine("01 - Sou administrador");
     Console.WriteLine("02 - Sou estudante");
     Console.Write("----------Opção: ");
     int opcao = int.Parse(Console.ReadLine());
+
+    if(opcao!= 1 && opcao!=2){throw new ArgumentOutOfRangeException();}
 
     return opcao;
   }
@@ -87,6 +89,9 @@ class Program{
     Console.WriteLine("-1 - Encerrar");
     Console.Write("----------Opção: ");
     int opcao = int.Parse(Console.ReadLine());
+
+    if(opcao < -1 || opcao == 0 || opcao > 6 && opcao < 99 || opcao > 99){throw new ArgumentOutOfRangeException();}
+    
     return opcao;
   }
   public static int MenuEstudanteSemLogin(){
@@ -97,6 +102,9 @@ class Program{
     Console.WriteLine("-1 - Encerrar");
     Console.Write("----------Opção: ");
     int opcao = int.Parse(Console.ReadLine());
+
+    if(opcao!= 1 && opcao!=99 && opcao!=-1){throw new ArgumentOutOfRangeException();}
+    
     return opcao;
   }
   public static int MenuEstudanteComLogin(){
@@ -107,7 +115,7 @@ class Program{
     Console.WriteLine($"----------Olá {primeiro_nome}, aqui está seu local de estudos!----------");
     Console.WriteLine("01 - Inserir nova disciplina");
     Console.WriteLine("02 - Listar as disciplinas");
-    Console.WriteLine("03 - Atualizar prioridade de uma disciplina");
+    Console.WriteLine("03 - Atualizar disciplina");
     Console.WriteLine("04 - Excluir disciplina");
     Console.WriteLine("05 - Inserir novo assunto");
     Console.WriteLine("06 - Listar os assuntos de uma disciplina");
@@ -117,6 +125,9 @@ class Program{
     Console.WriteLine("-1 - Encerrar");
     Console.Write("----------Opção: ");
     int opcao = int.Parse(Console.ReadLine());
+
+    if(opcao < -1 || opcao == 0 || opcao > 8 && opcao < 99 || opcao > 99){throw new ArgumentOutOfRangeException();}
+    
     return opcao;
   }
   public static void Logar(){
@@ -151,7 +162,7 @@ class Program{
     Console.Write("Informe a prioridade: ");
     int pr = int.Parse(Console.ReadLine());
 
-    Disciplina novo = new Disciplina(nome, id, nome_d2, pr);
+    Disciplina novo = new Disciplina(nome, id, nome_d2, pr, 0);
     Sistema.InserirDis(novo);
     Console.WriteLine("");
     Console.WriteLine("Operação realizada com sucesso");
@@ -164,9 +175,11 @@ class Program{
       Console.WriteLine("02 - Listar disciplinas de um estudante específico");
       Console.Write("Opção: ");
       int op = int.Parse(Console.ReadLine());
+      if(op!= 1 && op!=2){throw new ArgumentOutOfRangeException();}
+      
       if(op ==1){
         foreach(Disciplina i in Sistema.ListarDis()){
-          Console.WriteLine(i.Nome_est + " " + i);
+          Console.WriteLine(i.Nome_est + "-" + i);
         }
       }
       if(op ==2){
@@ -174,7 +187,7 @@ class Program{
         int cadastro = int.Parse(Console.ReadLine());
         foreach(Disciplina i in Sistema.ListarDis())
           if(i.Cadastro.Equals(cadastro)){
-            Console.WriteLine(i.Nome_est + " " + i.Cadastro + " " + i);
+            Console.WriteLine(i.Nome_est + "-" + i.Cadastro + "-" + i);
           }
       }
     }
@@ -189,16 +202,23 @@ class Program{
     Console.WriteLine("Operação realizada com sucesso");
   }
 
+  //Erro!!!
   public static void DisAtualizar(int id) {
     Console.WriteLine("");
     Console.WriteLine("------Atualizar uma disciplina------");
-    Console.Write("Informe o nome da disciplina: ");
+    foreach (Disciplina i in Sistema.ListarDis()) {
+      Console.WriteLine(i);
+    }
+    Console.Write("Informe o id da disciplina: ");
+    int id2 = int.Parse(Console.ReadLine());
+    
+    Console.Write("Informe o novo nome da disciplina: ");
     string nome = Console.ReadLine();
 
     Console.Write("Informe a nova prioridade: ");
     int prio = int.Parse(Console.ReadLine());
 
-    Disciplina novo = new Disciplina("", id, nome, prio);
+    Disciplina novo = new Disciplina("", id, nome, prio, id2);
     Sistema.AtualizarDis(novo);
     Console.WriteLine("");
     Console.WriteLine("Operação realizada com sucesso");
@@ -207,10 +227,13 @@ class Program{
   public static void DisExcluir(int id) {
     Console.WriteLine("");
     Console.WriteLine("------Excluir uma disciplina------");
-    Console.Write("Informe o nome da disciplina: ");
-    string nome = Console.ReadLine();
+    foreach (Disciplina i in Sistema.ListarDis()) {
+      Console.WriteLine(i);}
+      
+    Console.Write("Informe o Id da disciplina: ");
+    int id2 = int.Parse(Console.ReadLine());
 
-    Disciplina novo = new Disciplina("", id, nome, 0);
+    Disciplina novo = new Disciplina("", id, "", 0, id2);
     Sistema.ExcluirDis(novo);
     Console.WriteLine("");
     Console.WriteLine("Operação realizada com sucesso");
@@ -235,7 +258,7 @@ class Program{
         string nome_a = Console.ReadLine();
         Console.Write("Informe a quantidade de vezes que já estudou esse assunto: ");
         int qtd = int.Parse(Console.ReadLine());
-        Assunto novo2 = new Assunto(nome_d, nome_a, qtd);
+        Assunto novo2 = new Assunto(nome_d, nome_a, qtd, 0, 0);
         Sistema.InserirAs(novo2);
         Console.WriteLine("");
         Console.WriteLine("Operação realizada com sucesso");
@@ -245,14 +268,13 @@ class Program{
     if (continuar == 0) {
       Console.Write("Informe a prioridade: ");
       int pr = int.Parse(Console.ReadLine());
-      Disciplina novo = new Disciplina(nome, id, nome_d, pr);
-      Sistema.InserirDis(novo);
-
+      Disciplina novo = new Disciplina(nome, id, nome_d, pr, 0);
       Console.Write("Informe o nome do assunto: ");
       string nome_a1 = Console.ReadLine();
       Console.Write("Informe a quantidade de vezes que já estudou esse assunto: ");
       int qtd1 = int.Parse(Console.ReadLine());
-      Assunto novo3 = new Assunto(nome_d, nome_a1, qtd1);
+      Assunto novo3 = new Assunto(nome_d, nome_a1, qtd1, 0, 0);
+      Sistema.InserirDis(novo);
       Sistema.InserirAs(novo3);
       Console.WriteLine("");
       Console.WriteLine("Operação realizada com sucesso");
@@ -266,9 +288,11 @@ class Program{
       Console.WriteLine("02 - Listar assuntos de um estudante específico");
       Console.Write("Opção: ");
       int op = int.Parse(Console.ReadLine());
+      if(op!= 1 && op!=2){throw new ArgumentOutOfRangeException();}
+      
       if(op ==1){
         foreach(Disciplina i in Sistema.ListarDis()){
-          foreach(Assunto a in Sistema.ListarAs(i.Nome_dis)){
+          foreach(Assunto a in Sistema.ListarAs(i.IdDis)){
             Console.WriteLine(i.Nome_est + " " + i.Nome_dis + " " + a);
           }
         }
@@ -278,7 +302,7 @@ class Program{
         int cadastro = int.Parse(Console.ReadLine());
         foreach(Disciplina i in Sistema.ListarDis()){
           if(i.Cadastro.Equals(cadastro)){
-            foreach(Assunto a in Sistema.ListarAs(i.Nome_dis)){
+            foreach(Assunto a in Sistema.ListarAs(i.IdDis)){
              Console.WriteLine(i.Nome_est + " " + i.Nome_dis + " " + a); 
             }
           }
@@ -289,14 +313,14 @@ class Program{
     //apresentar as opções válidas
     foreach(Disciplina i in Sistema.ListarDis()){
       if(i.Cadastro.Equals(id)){
-        Console.WriteLine(i.Nome_dis); 
+        Console.WriteLine($"{i.Nome_dis} (Id: {i.IdDis})"); 
       }
     }
     
-    Console.Write("Informe o nome da disciplina: ");
-    string nome = Console.ReadLine();
-    Console.WriteLine(nome);
-    foreach(Assunto i in Sistema.ListarAs(nome)){
+    Console.Write("Informe o id da disciplina: ");
+    int iddis = int.Parse(Console.ReadLine());
+    Console.WriteLine(iddis);
+    foreach(Assunto i in Sistema.ListarAs(iddis)){
       Console.WriteLine(i);
     }
     Console.WriteLine("");
@@ -308,22 +332,25 @@ class Program{
     Console.WriteLine("------Atualizar um assunto------");
     foreach(Disciplina i in Sistema.ListarDis()){
       if(i.Cadastro.Equals(id)){
-        Console.WriteLine(i.Nome_dis); 
+        Console.WriteLine($"{i.Nome_dis} (Id: {i.IdDis})"); 
       }
     }
-    Console.Write("Informe o nome da disciplina: ");
-    string nome_d = Console.ReadLine();
+    Console.Write("Informe o id da disciplina: ");
+    int iddis = int.Parse(Console.ReadLine());
 
-    foreach(Assunto i in Sistema.ListarAs(nome_d)){
+    foreach(Assunto i in Sistema.ListarAs(iddis)){
       Console.WriteLine(i);
     }
-    Console.Write("Informe o nome do assunto: ");
-    string nome = Console.ReadLine();
+    Console.Write("Informe o id do assunto: ");
+    int idas = int.Parse(Console.ReadLine());
 
+    Console.Write("Informe o novo nome do assunto: ");
+    string nome = Console.ReadLine();
+    
     Console.Write("Informe a nova quantidade de revisões: ");
     int qtd = int.Parse(Console.ReadLine());
 
-    Assunto novo = new Assunto("", nome, qtd);
+    Assunto novo = new Assunto("", nome, qtd, idas, iddis);
     Sistema.AtualizarAs(novo);
     Console.WriteLine("");
     Console.WriteLine("Operação realizada com sucesso");
@@ -333,19 +360,19 @@ class Program{
     Console.WriteLine("------Excluir um assunto------");
     foreach(Disciplina i in Sistema.ListarDis()){
       if(i.Cadastro.Equals(id)){
-        Console.WriteLine(i.Nome_dis); 
+        Console.WriteLine($"{i.Nome_dis} (Id: {i.IdDis})"); 
       }
     }
-    Console.Write("Informe o nome da disciplina: ");
-    string nome_d = Console.ReadLine();
+    Console.Write("Informe o id da disciplina: ");
+    int iddis = int.Parse(Console.ReadLine());
 
-    foreach(Assunto i in Sistema.ListarAs(nome_d)){
+    foreach(Assunto i in Sistema.ListarAs(iddis)){
       Console.WriteLine(i);
     }
-    Console.Write("Informe o nome do assunto: ");
-    string nome = Console.ReadLine();
+    Console.Write("Informe o id do assunto: ");
+    int idas = int.Parse(Console.ReadLine());
 
-    Assunto novo = new Assunto("", nome, 0);
+    Assunto novo = new Assunto("", "", 0, idas, iddis);
     Sistema.ExcluirAs(novo);
     Console.WriteLine("");
     Console.WriteLine("Operação realizada com sucesso");

@@ -6,13 +6,15 @@ public class Disciplina : IComparable<Disciplina> {
   int cadastro;//120, ou seja, foi a 120° pessoa a se cadastrar no app
   string nome_disciplina;//Física
   int prioridade;//1
-
+  int id_disciplina;
+  
   public Disciplina(){}
-  public Disciplina(string n_est, int cadastro, string n_dis, int pri) {
+  public Disciplina(string n_est, int cadastro, string n_dis, int pri, int idDis) {
     nome_estudante = n_est;
     this.cadastro = cadastro;
     nome_disciplina = n_dis;
     prioridade = pri;
+    id_disciplina = idDis;
   }
   public string Nome_est{
     get{return nome_estudante;}
@@ -28,11 +30,15 @@ public class Disciplina : IComparable<Disciplina> {
   }
   public int Prio{
     get{return prioridade;}
-    set{prioridade = value;}
+    set{prioridade=value;}
+  }
+  public int IdDis{
+    get{return id_disciplina;}
+    set{id_disciplina=value;}
   }
   
   public override string ToString() {
-    return $"{nome_disciplina} - Prioridade: {prioridade}";
+    return $"{nome_disciplina} (Id: {id_disciplina}) - Prioridade: {prioridade}";
   }
 
   public int CompareTo(Disciplina novo) {
