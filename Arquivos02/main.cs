@@ -50,6 +50,9 @@ class Program{
           if(opcao==8){AsExcluir(identi);}
           if(opcao==99){Logout(); escolher=0;}
         }
+        if(escolher==-1){
+          opcao = -1;
+        }
       }
       catch (Exception erro) {
         opcao = -2;
