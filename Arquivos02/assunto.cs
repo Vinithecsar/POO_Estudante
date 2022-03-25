@@ -2,25 +2,30 @@ using System;
 
 public class Assunto : IComparable<Assunto>{
   string nome_disciplina;//Física
+  int id_disciplina;// 21
+  
   string nome_assunto;//Termodinâmica
-  int qtd_revisoes; 
-  int id_assunto;
-  int id_disciplina;
-  // Já revisei 3 vezes, 4 vezes até ter a capacidade necessária para encarar a prova
+  int qtd_revisoes; //revisei 3 vezes, 4 vezes, até ter capacidade de fazer a prova
+  int id_assunto;// 100
+  //construtores
   public Assunto(){}
-  public Assunto(string n_d, string n_a, int qtd, int id_as, int id_dis){
+  public Assunto(string n_d, int id_dis, string n_a, int qtd, int id_as){
     nome_disciplina = n_d;
     nome_assunto = n_a;
     qtd_revisoes = qtd;
     id_assunto = id_as;
     id_disciplina = id_dis;
   }
-  
-  //propriedades
+  //propriedades associação disciplina - assunto
   public string Nome_d{
     get{return nome_disciplina;}
     set{nome_disciplina=value;}
   }
+  public int IdDisciplina{
+    get{return id_disciplina;}
+    set{id_disciplina=value;}
+  }
+  //propriedades assunto
   public string Nome_a{
     get{return nome_assunto;}
     set{nome_assunto=value;}
@@ -29,16 +34,11 @@ public class Assunto : IComparable<Assunto>{
     get{return qtd_revisoes;} 
     set{qtd_revisoes=value;}
   }
-
   public int IdAssunto{
     get{return id_assunto;}
     set{id_assunto=value;}
   }
-  public int IdDisciplina{
-    get{return id_disciplina;}
-    set{id_disciplina=value;}
-  }
-  
+
   public override string ToString(){
     return $"{nome_assunto} (Id: {id_assunto}) - revisei {qtd_revisoes} vezes";
   }

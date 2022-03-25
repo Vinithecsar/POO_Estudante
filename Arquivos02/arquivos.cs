@@ -22,6 +22,5 @@ class Arquivos<T>{
     
     x.Serialize(y, obj);
     y.Close();
-    
   }
 }

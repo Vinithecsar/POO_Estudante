@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Disciplina : IComparable<Disciplina> {
   string nome_estudante;//Joao
   int cadastro;//120, ou seja, foi a 120° pessoa a se cadastrar no app
+  
   string nome_disciplina;//Física
   int prioridade;//1
   int id_disciplina;
